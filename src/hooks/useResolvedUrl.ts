@@ -5,28 +5,21 @@ import type { AudioTrack, Reciter } from "@/types";
 
 const resolvedCache = new Map<string, string>();
 
-async function resolveSoundCloudUrl(trackId: string, clientId: string): Promise<string> {
+async function resolveSoundCloudUrlViaProxy(trackId: string, clientId: string): Promise<string> {
   const cacheKey = `sc:${trackId}`;
   const cached = resolvedCache.get(cacheKey);
   if (cached) return cached;
 
-  const trackRes = await fetch(
-    `https://api-v2.soundcloud.com/tracks/${trackId}?client_id=${clientId}`
+  const res = await fetch(
+    `/api/resolve-soundcloud?trackId=${trackId}&clientId=${clientId}`
   );
-  if (!trackRes.ok) throw new Error("Failed to fetch SoundCloud track");
-  const trackData = await trackRes.json();
-
-  const progressive = trackData.media?.transcodings?.find(
-    (t: any) => t.format?.protocol === "progressive"
-  );
-  if (!progressive?.url) throw new Error("No progressive stream found");
-
-  const streamRes = await fetch(`${progressive.url}?client_id=${clientId}`);
-  if (!streamRes.ok) throw new Error("Failed to resolve stream URL");
-  const streamData = await streamRes.json();
-
-  resolvedCache.set(cacheKey, streamData.url);
-  return streamData.url;
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data.error || `Failed to resolve SoundCloud URL (${res.status})`);
+  }
+  const data = await res.json();
+  resolvedCache.set(cacheKey, data.url);
+  return data.url;
 }
 
 function buildDirectUrl(template: string, surahNumber: number): string {
@@ -58,7 +51,7 @@ export function useResolvedUrl(track: AudioTrack | null, reciter: Reciter | null
           const resolved = buildDirectUrl(reciter.urlTemplate, track.surahNumber);
           if (!cancelled) setUrl(resolved);
         } else if (reciter.type === "soundcloud" && reciter.clientId && track.soundcloudTrackId) {
-          const resolved = await resolveSoundCloudUrl(track.soundcloudTrackId, reciter.clientId);
+          const resolved = await resolveSoundCloudUrlViaProxy(track.soundcloudTrackId, reciter.clientId);
           if (!cancelled) setUrl(resolved);
         } else {
           throw new Error("Cannot resolve URL: missing reciter or track info");

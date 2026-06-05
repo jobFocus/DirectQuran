@@ -224,8 +224,7 @@ export default function Home() {
     setStarted(true);
     setPlaying(true);
     setStatus("playing");
-    requestFullscreen();
-  }, [requestFullscreen]);
+  }, []);
 
   const handlePlayPause = useCallback(() => {
     setPlaying((p) => !p);
@@ -327,7 +326,7 @@ export default function Home() {
   }, []);
 
   if (!started) {
-    return <StartOverlay onStart={handleStart} title={MANIFEST.title} />;
+    return <StartOverlay onStart={handleStart} onTap={requestFullscreen} title={MANIFEST.title} />;
   }
 
   return (

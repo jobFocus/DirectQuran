@@ -4,18 +4,24 @@ import { useEffect, useState } from "react";
 
 interface StartOverlayProps {
   onStart: () => void;
+  onTap?: () => void;
   title: string;
 }
 
-export default function StartOverlay({ onStart, title }: StartOverlayProps) {
+type Phase = "idle" | "counting" | "done";
+
+export default function StartOverlay({ onStart, onTap, title }: StartOverlayProps) {
+  const [phase, setPhase] = useState<Phase>("idle");
   const [countdown, setCountdown] = useState(3);
   const [fading, setFading] = useState(false);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    if (phase !== "counting") return;
     if (countdown <= 0) {
       setFading(true);
       setTimeout(() => {
+        setPhase("done");
         setVisible(false);
         onStart();
       }, 600);
@@ -23,12 +29,20 @@ export default function StartOverlay({ onStart, title }: StartOverlayProps) {
     }
     const timer = setTimeout(() => setCountdown((c) => c - 1), 1000);
     return () => clearTimeout(timer);
-  }, [countdown, onStart]);
+  }, [phase, countdown, onStart]);
+
+  const handleTap = () => {
+    if (phase !== "idle") return;
+    onTap?.();
+    setPhase("counting");
+  };
 
   if (!visible) return null;
 
   return (
     <div
+      onClick={handleTap}
+      onTouchStart={handleTap}
       style={{
         position: "fixed",
         inset: 0,
@@ -42,6 +56,7 @@ export default function StartOverlay({ onStart, title }: StartOverlayProps) {
         transition: "opacity 0.6s ease",
         padding: "2rem",
         textAlign: "center",
+        cursor: phase === "idle" ? "pointer" : "default",
       }}
     >
       <div style={{ maxWidth: 520 }}>
@@ -70,39 +85,77 @@ export default function StartOverlay({ onStart, title }: StartOverlayProps) {
         >
           {title}
         </h1>
-        <p
-          style={{
-            fontSize: "0.95rem",
-            color: "var(--color-text-muted)",
-            marginBottom: "2.5rem",
-            lineHeight: 1.7,
-            maxWidth: 400,
-            margin: "0 auto 2.5rem",
-          }}
-        >
-          Experience the Holy Quran with serene visuals of iconic mosques from around the world.
-        </p>
-        <div
-          style={{
-            fontSize: "clamp(2rem, 6vw, 3.5rem)",
-            fontWeight: 700,
-            color: "var(--color-accent)",
-            fontFamily: "var(--font-display)",
-            animation: "pulse 1s ease-in-out infinite",
-          }}
-        >
-          {countdown}
-        </div>
-        <div
-          style={{
-            marginTop: "0.75rem",
-            fontSize: "0.85rem",
-            color: "var(--color-text-muted)",
-            letterSpacing: "0.1em",
-          }}
-        >
-          Starting automatically...
-        </div>
+        {phase === "idle" && (
+          <>
+            <p
+              style={{
+                fontSize: "0.95rem",
+                color: "var(--color-text-muted)",
+                marginBottom: "2.5rem",
+                lineHeight: 1.7,
+                maxWidth: 400,
+                margin: "0 auto 2.5rem",
+              }}
+            >
+              Experience the Holy Quran with serene visuals of iconic mosques from around the world.
+            </p>
+            <div
+              style={{
+                padding: "1rem 3rem",
+                fontSize: "1.1rem",
+                fontWeight: 600,
+                color: "#0a0a0f",
+                background: "var(--color-accent)",
+                border: "none",
+                borderRadius: 50,
+                cursor: "pointer",
+                display: "inline-block",
+                boxShadow: "0 4px 20px rgba(200, 164, 92, 0.4)",
+                letterSpacing: "0.05em",
+                transition: "transform 0.2s ease, box-shadow 0.2s ease",
+              }}
+            >
+              Tap to Begin
+            </div>
+          </>
+        )}
+        {phase === "counting" && (
+          <>
+            <p
+              style={{
+                fontSize: "0.95rem",
+                color: "var(--color-text-muted)",
+                marginBottom: "2.5rem",
+                lineHeight: 1.7,
+                maxWidth: 400,
+                margin: "0 auto 2.5rem",
+              }}
+            >
+              Experience the Holy Quran with serene visuals of iconic mosques from around the world.
+            </p>
+            <div
+              style={{
+                fontSize: "clamp(2rem, 6vw, 3.5rem)",
+                fontWeight: 700,
+                color: "var(--color-accent)",
+                fontFamily: "var(--font-display)",
+                animation: "pulse 1s ease-in-out infinite",
+              }}
+            >
+              {countdown}
+            </div>
+            <div
+              style={{
+                marginTop: "0.75rem",
+                fontSize: "0.85rem",
+                color: "var(--color-text-muted)",
+                letterSpacing: "0.1em",
+              }}
+            >
+              Starting...
+            </div>
+          </>
+        )}
       </div>
       <style>{`
         @keyframes pulse {

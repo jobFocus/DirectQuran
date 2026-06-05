@@ -8,19 +8,22 @@ interface StartOverlayProps {
 }
 
 export default function StartOverlay({ onStart, title }: StartOverlayProps) {
-  const [visible, setVisible] = useState(true);
+  const [countdown, setCountdown] = useState(3);
   const [fading, setFading] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    if (!fading) return;
-    const timer = setTimeout(() => setVisible(false), 600);
+    if (countdown <= 0) {
+      setFading(true);
+      setTimeout(() => {
+        setVisible(false);
+        onStart();
+      }, 600);
+      return;
+    }
+    const timer = setTimeout(() => setCountdown((c) => c - 1), 1000);
     return () => clearTimeout(timer);
-  }, [fading]);
-
-  const handleStart = () => {
-    setFading(true);
-    setTimeout(onStart, 100);
-  };
+  }, [countdown, onStart]);
 
   if (!visible) return null;
 
@@ -53,7 +56,7 @@ export default function StartOverlay({ onStart, title }: StartOverlayProps) {
             letterSpacing: "0.02em",
           }}
         >
-          &#x0628;&#x0633;&#x0645; &#x0627;&#x0644;&#x0644;&#x0647; &#x0627;&#x0644;&#x0631;&#x062d;&#x0645;&#x0646; &#x0627;&#x0644;&#x0631;&#x062d;&#x064a;&#x0645;
+          &#x0628;&#x0633;&#x0645; &#x0627;&#x0644;&#x0644;&#x0647; &#x0627;&#x0644;&#x631;&#x062d;&#x645;&#x646; &#x0627;&#x0644;&#x631;&#x062d;&#x64A;&#x645;
         </div>
         <h1
           style={{
@@ -79,33 +82,34 @@ export default function StartOverlay({ onStart, title }: StartOverlayProps) {
         >
           Experience the Holy Quran with serene visuals of iconic mosques from around the world.
         </p>
-        <button
-          onClick={handleStart}
+        <div
           style={{
-            padding: "1rem 3rem",
-            fontSize: "1.1rem",
-            fontWeight: 600,
-            color: "#0a0a0f",
-            background: "var(--color-accent)",
-            border: "none",
-            borderRadius: 50,
-            cursor: "pointer",
-            transition: "transform 0.2s ease, box-shadow 0.2s ease",
-            boxShadow: "0 4px 20px rgba(200, 164, 92, 0.4)",
-            letterSpacing: "0.05em",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "scale(1.05)";
-            e.currentTarget.style.boxShadow = "0 6px 30px rgba(200, 164, 92, 0.6)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "scale(1)";
-            e.currentTarget.style.boxShadow = "0 4px 20px rgba(200, 164, 92, 0.4)";
+            fontSize: "clamp(2rem, 6vw, 3.5rem)",
+            fontWeight: 700,
+            color: "var(--color-accent)",
+            fontFamily: "var(--font-display)",
+            animation: "pulse 1s ease-in-out infinite",
           }}
         >
-          Tap to Begin
-        </button>
+          {countdown}
+        </div>
+        <div
+          style={{
+            marginTop: "0.75rem",
+            fontSize: "0.85rem",
+            color: "var(--color-text-muted)",
+            letterSpacing: "0.1em",
+          }}
+        >
+          Starting automatically...
+        </div>
       </div>
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.15); opacity: 0.7; }
+        }
+      `}</style>
     </div>
   );
 }

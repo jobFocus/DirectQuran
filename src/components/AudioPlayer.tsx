@@ -1,10 +1,11 @@
 "use client";
 
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect } from "react";
 import type { AudioTrack } from "@/types";
 
 interface AudioPlayerProps {
-  track: AudioTrack;
+  track: AudioTrack | null;
+  src?: string;
   isPlaying: boolean;
   volume: number;
   isMuted: boolean;
@@ -16,6 +17,7 @@ interface AudioPlayerProps {
 
 export default function AudioPlayer({
   track,
+  src,
   isPlaying,
   volume,
   isMuted,
@@ -29,7 +31,6 @@ export default function AudioPlayer({
   useEffect(() => {
     const el = audioRef.current;
     if (!el) return;
-
     el.volume = volume;
     el.muted = isMuted;
   }, [volume, isMuted]);
@@ -75,11 +76,13 @@ export default function AudioPlayer({
     }
   }, [isPlaying, onError]);
 
+  const audioSrc = src ?? "";
+
   return (
     <audio
       ref={audioRef}
-      key={track.id}
-      src={track.url}
+      key={track?.id ?? "no-track"}
+      src={audioSrc}
       preload="auto"
       style={{ display: "none" }}
     />

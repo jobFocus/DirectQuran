@@ -1,7 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
-import type { AudioTrack } from "@/types";
+
+interface TrackInfo {
+  surahName: string;
+  reciter: string;
+}
 
 interface MediaSessionHandlers {
   onPlay: () => void;
@@ -11,7 +15,7 @@ interface MediaSessionHandlers {
 }
 
 export function useMediaSession(
-  track: AudioTrack | null,
+  track: TrackInfo | null,
   isPlaying: boolean,
   handlers: MediaSessionHandlers
 ) {
@@ -20,7 +24,7 @@ export function useMediaSession(
 
     if (track) {
       navigator.mediaSession.metadata = new MediaMetadata({
-        title: `${track.surahNumber}. ${track.surahName}`,
+        title: track.surahName,
         artist: track.reciter,
         album: "Quran",
       });

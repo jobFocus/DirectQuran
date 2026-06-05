@@ -1,12 +1,23 @@
+export interface Reciter {
+  id: string;
+  name: string;
+  nameArabic: string;
+  type: "direct" | "soundcloud";
+  urlTemplate?: string;
+  clientId?: string;
+  license: LicenseInfo;
+}
+
 export interface AudioTrack {
   id: string;
-  surahName: string;
-  surahNameArabic?: string;
+  reciterId: string;
   surahNumber: number;
-  reciter: string;
-  url: string;
+  surahName?: string;
+  surahNameArabic?: string;
+  displayTitle?: string;
+  soundcloudTrackId?: string;
   durationSeconds: number;
-  license: LicenseInfo;
+  license?: LicenseInfo;
 }
 
 export interface VideoClip {
@@ -27,9 +38,10 @@ export interface LicenseInfo {
 
 export interface PlaylistManifest {
   title: string;
+  videoRotationIntervalSeconds: number;
+  reciters: Reciter[];
   audioTracks: AudioTrack[];
   videos: VideoClip[];
-  videoRotationIntervalSeconds: number;
 }
 
 export type PlayerStatus =

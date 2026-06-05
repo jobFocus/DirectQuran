@@ -1,10 +1,18 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import type { AudioTrack } from "@/types";
+
+interface DisplayTrack {
+  id: string;
+  surahName: string;
+  surahNameArabic?: string;
+  surahNumber: number;
+  reciter: string;
+  reciterArabic?: string;
+}
 
 interface NowPlayingProps {
-  track: AudioTrack | null;
+  track: DisplayTrack | null;
   visible: boolean;
 }
 
@@ -88,7 +96,7 @@ export default function NowPlaying({ track, visible }: NowPlayingProps) {
             marginBottom: "0.15rem",
           }}
         >
-          {currentTrack.surahNumber}. {currentTrack.surahName}
+          {currentTrack.surahName}
         </h2>
         {currentTrack.surahNameArabic && (
           <div
@@ -108,7 +116,7 @@ export default function NowPlaying({ track, visible }: NowPlayingProps) {
             color: "var(--color-text-muted)",
           }}
         >
-          {currentTrack.reciter}
+          {currentTrack.reciterArabic || currentTrack.reciter}
         </div>
       </div>
     </div>

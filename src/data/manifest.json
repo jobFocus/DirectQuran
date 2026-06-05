@@ -1,0 +1,191 @@
+{
+  "title": "Quran Mosque Experience",
+  "videoRotationIntervalSeconds": 120,
+  "audioTracks": [
+    {
+      "id": "001-al-fatiha",
+      "surahName": "Al-Fatiha",
+      "surahNameArabic": "\u0627\u0644\u0641\u0627\u062a\u062d\u0629",
+      "surahNumber": 1,
+      "reciter": "Mishary Rashid Al-Afasy",
+      "url": "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1.mp3",
+      "durationSeconds": 30,
+      "license": {
+        "source": "https://cdn.islamic.network/quran/audio/",
+        "author": "Mishary Rashid Al-Afasy / Islamic Network",
+        "terms": "Free for non-commercial use. Quranic audio provided by Islamic Network API.",
+        "acquisitionDate": "2025-06-01"
+      }
+    },
+    {
+      "id": "036-ya-sin",
+      "surahName": "Ya-Sin",
+      "surahNameArabic": "\u064a\u0633",
+      "surahNumber": 36,
+      "reciter": "Mishary Rashid Al-Afasy",
+      "url": "https://cdn.islamic.network/quran/audio/64/ar.alafasy/36.mp3",
+      "durationSeconds": 210,
+      "license": {
+        "source": "https://cdn.islamic.network/quran/audio/",
+        "author": "Mishary Rashid Al-Afasy / Islamic Network",
+        "terms": "Free for non-commercial use. Quranic audio provided by Islamic Network API.",
+        "acquisitionDate": "2025-06-01"
+      }
+    },
+    {
+      "id": "055-ar-rahman",
+      "surahName": "Ar-Rahman",
+      "surahNameArabic": "\u0627\u0644\u0631\u062d\u0645\u0646",
+      "surahNumber": 55,
+      "reciter": "Mishary Rashid Al-Afasy",
+      "url": "https://cdn.islamic.network/quran/audio/64/ar.alafasy/55.mp3",
+      "durationSeconds": 240,
+      "license": {
+        "source": "https://cdn.islamic.network/quran/audio/",
+        "author": "Mishary Rashid Al-Afasy / Islamic Network",
+        "terms": "Free for non-commercial use. Quranic audio provided by Islamic Network API.",
+        "acquisitionDate": "2025-06-01"
+      }
+    },
+    {
+      "id": "067-al-mulk",
+      "surahName": "Al-Mulk",
+      "surahNameArabic": "\u0627\u0644\u0645\u0644\u0643",
+      "surahNumber": 67,
+      "reciter": "Mishary Rashid Al-Afasy",
+      "url": "https://cdn.islamic.network/quran/audio/64/ar.alafasy/67.mp3",
+      "durationSeconds": 180,
+      "license": {
+        "source": "https://cdn.islamic.network/quran/audio/",
+        "author": "Mishary Rashid Al-Afasy / Islamic Network",
+        "terms": "Free for non-commercial use. Quranic audio provided by Islamic Network API.",
+        "acquisitionDate": "2025-06-01"
+      }
+    },
+    {
+      "id": "112-al-ikhlas",
+      "surahName": "Al-Ikhlas",
+      "surahNameArabic": "\u0627\u0644\u0625\u062e\u0644\u0627\u0635",
+      "surahNumber": 112,
+      "reciter": "Mishary Rashid Al-Afasy",
+      "url": "https://cdn.islamic.network/quran/audio/64/ar.alafasy/112.mp3",
+      "durationSeconds": 15,
+      "license": {
+        "source": "https://cdn.islamic.network/quran/audio/",
+        "author": "Mishary Rashid Al-Afasy / Islamic Network",
+        "terms": "Free for non-commercial use. Quranic audio provided by Islamic Network API.",
+        "acquisitionDate": "2025-06-01"
+      }
+    },
+    {
+      "id": "113-al-falaq",
+      "surahName": "Al-Falaq",
+      "surahNameArabic": "\u0627\u0644\u0641\u0644\u0642",
+      "surahNumber": 113,
+      "reciter": "Mishary Rashid Al-Afasy",
+      "url": "https://cdn.islamic.network/quran/audio/64/ar.alafasy/113.mp3",
+      "durationSeconds": 20,
+      "license": {
+        "source": "https://cdn.islamic.network/quran/audio/",
+        "author": "Mishary Rashid Al-Afasy / Islamic Network",
+        "terms": "Free for non-commercial use. Quranic audio provided by Islamic Network API.",
+        "acquisitionDate": "2025-06-01"
+      }
+    },
+    {
+      "id": "114-an-nas",
+      "surahName": "An-Nas",
+      "surahNameArabic": "\u0627\u0644\u0646\u0627\u0633",
+      "surahNumber": 114,
+      "reciter": "Mishary Rashid Al-Afasy",
+      "url": "https://cdn.islamic.network/quran/audio/64/ar.alafasy/114.mp3",
+      "durationSeconds": 25,
+      "license": {
+        "source": "https://cdn.islamic.network/quran/audio/",
+        "author": "Mishary Rashid Al-Afasy / Islamic Network",
+        "terms": "Free for non-commercial use. Quranic audio provided by Islamic Network API.",
+        "acquisitionDate": "2025-06-01"
+      }
+    }
+  ],
+  "videos": [
+    {
+      "id": "mosque-dome-249389",
+      "mosqueName": "Mosque Dome Interior",
+      "location": "Grand Mosque",
+      "url": "https://cdn.pixabay.com/video/2024/12/28/249389_large.mp4",
+      "durationSeconds": 30,
+      "license": {
+        "source": "https://pixabay.com/videos/dome-mosque-architecture-building-249389/",
+        "author": "Fajaryogaprawiranta (Pixabay)",
+        "terms": "Pixabay License - Free for commercial use, no attribution required",
+        "acquisitionDate": "2025-06-01"
+      }
+    },
+    {
+      "id": "mosque-dome-131292",
+      "mosqueName": "Mosque Dome Exterior",
+      "location": "Ottoman Mosque",
+      "url": "https://cdn.pixabay.com/video/2022/09/14/131292-749647627_large.mp4",
+      "durationSeconds": 60,
+      "license": {
+        "source": "https://pixabay.com/videos/dome-mosque-architecture-building-131292/",
+        "author": "samirsmier (Pixabay)",
+        "terms": "Pixabay License - Free for commercial use, no attribution required",
+        "acquisitionDate": "2025-06-01"
+      }
+    },
+    {
+      "id": "islamic-mosque-281015",
+      "mosqueName": "Islamic Mosque",
+      "location": "Medina",
+      "url": "https://cdn.pixabay.com/video/2025/05/23/281015_large.mp4",
+      "durationSeconds": 30,
+      "license": {
+        "source": "https://pixabay.com/videos/islam-mosque-muslim-quran-culture-281015/",
+        "author": "Mosque_Ai (Pixabay)",
+        "terms": "Pixabay License - Free for commercial use, no attribution required",
+        "acquisitionDate": "2025-06-01"
+      }
+    },
+    {
+      "id": "mosque-exterior-40704",
+      "mosqueName": "Mosque Courtyard",
+      "location": "Umayyad Mosque",
+      "url": "https://cdn.pixabay.com/video/2020/05/31/40704-426189550_large.mp4",
+      "durationSeconds": 50,
+      "license": {
+        "source": "https://pixabay.com/videos/mosque-architecture-building-40704/",
+        "author": "Coverr-Free-Footage (Pixabay)",
+        "terms": "Pixabay License - Free for commercial use, no attribution required",
+        "acquisitionDate": "2025-06-01"
+      }
+    },
+    {
+      "id": "islamic-video-281205",
+      "mosqueName": "Islamic Architecture",
+      "location": "Modern Mosque",
+      "url": "https://cdn.pixabay.com/video/2025/05/24/281205_large.mp4",
+      "durationSeconds": 25,
+      "license": {
+        "source": "https://pixabay.com/videos/islam-mosque-muslim-quran-culture-281205/",
+        "author": "Mosque_Ai (Pixabay)",
+        "terms": "Pixabay License - Free for commercial use, no attribution required",
+        "acquisitionDate": "2025-06-01"
+      }
+    },
+    {
+      "id": "islamic-video-282336",
+      "mosqueName": "Islamic Mosque Night",
+      "location": "City Mosque",
+      "url": "https://cdn.pixabay.com/video/2025/05/29/282336_large.mp4",
+      "durationSeconds": 30,
+      "license": {
+        "source": "https://pixabay.com/videos/islam-mosque-muslim-quran-culture-282336/",
+        "author": "Mosque_Ai (Pixabay)",
+        "terms": "Pixabay License - Free for commercial use, no attribution required",
+        "acquisitionDate": "2025-06-01"
+      }
+    }
+  ]
+}

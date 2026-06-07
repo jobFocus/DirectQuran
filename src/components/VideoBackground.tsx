@@ -39,7 +39,7 @@ export default function VideoBackground({
     const handleEnded = () => onVideoEnded();
     el.addEventListener("ended", handleEnded);
     return () => el.removeEventListener("ended", handleEnded);
-  }, [isVideo, onVideoEnded]);
+  }, [isVideo, onVideoEnded, currentIndex]);
 
   useEffect(() => {
     if (!isVideo) return;

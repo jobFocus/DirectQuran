@@ -29,6 +29,15 @@ export interface VideoClip {
   license: LicenseInfo;
 }
 
+export interface SlideshowClip {
+  id: string;
+  mosqueName: string;
+  location: string;
+  imageUrl: string;
+  durationSeconds: number;
+  license: LicenseInfo;
+}
+
 export interface LicenseInfo {
   source: string;
   author: string;
@@ -42,6 +51,7 @@ export interface PlaylistManifest {
   reciters: Reciter[];
   audioTracks: AudioTrack[];
   videos: VideoClip[];
+  slideshowClips?: SlideshowClip[];
 }
 
 export type PlayerStatus =

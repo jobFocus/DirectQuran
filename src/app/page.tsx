@@ -90,13 +90,14 @@ export default function Home() {
   }, [urlLoading, resolvedUrl, currentTrack, playing]);
 
   // Video rotation timer
+  const totalVisuals = MANIFEST.videos.length + (MANIFEST.slideshowClips?.length ?? 0);
   useEffect(() => {
-    if (!playing) return;
+    if (!playing || totalVisuals === 0) return;
     const id = setInterval(() => {
-      setCurrentVideoIndex((prev) => (prev + 1) % MANIFEST.videos.length);
+      setCurrentVideoIndex((prev) => (prev + 1) % totalVisuals);
     }, MANIFEST.videoRotationIntervalSeconds * 1000);
     return () => clearInterval(id);
-  }, [playing]);
+  }, [playing, totalVisuals]);
 
   // Auto-hide controls
   const showControls = useCallback(() => {
@@ -257,8 +258,8 @@ export default function Home() {
   }, []);
 
   const handleNextVideo = useCallback(() => {
-    setCurrentVideoIndex((prev) => (prev + 1) % MANIFEST.videos.length);
-  }, []);
+    setCurrentVideoIndex((prev) => (prev + 1) % totalVisuals);
+  }, [totalVisuals]);
 
   const handleTimeUpdate = useCallback((currentTime: number, _duration: number) => {
     if (!seekingRef.current) {
@@ -341,6 +342,7 @@ export default function Home() {
     >
       <VideoBackground
         videos={MANIFEST.videos}
+        slideshowClips={MANIFEST.slideshowClips}
         currentIndex={currentVideoIndex}
         isPlaying={playing}
         onVideoEnded={handleNextVideo}

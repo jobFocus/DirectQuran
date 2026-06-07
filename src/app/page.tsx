@@ -270,11 +270,9 @@ export default function Home() {
   const handleAudioEnded = useCallback(() => {
     setCurrentTrackIndex((prev) => {
       if (prev < reciterTracks.length - 1) {
-        setCurrentVideoIndex(0);
         setProgressSeconds(0);
         return prev + 1;
       }
-      setCurrentVideoIndex(0);
       setProgressSeconds(0);
       return 0;
     });
